@@ -1,0 +1,88 @@
+body {
+  background-color: white;
+}
+
+body {
+  margin: 0;
+  padding-bottom: 3rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#form {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3.5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+#input {
+  border: none;
+  padding: 0 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+}
+
+#input:focus {
+  outline: none;
+}
+
+#form > button {
+  background: #444444;
+  border: none;
+  padding: 0.25 1.25rem;
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+  color: #fff;
+}
+
+#messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.5rem;
+}
+
+.sent-message {
+  background: -webkit-gradient(linear, left top, right top, from(#ffc4fa), to(#9da6f0));
+  background: linear-gradient(to right, #ffc4fa, #9da6f0);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.received-message {
+  background-color: #f3f3f3;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.message {
+  padding: 1rem 1.5rem;
+  max-width: 60%;
+  min-width: 5rem;
+  list-style-type: none;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
+  margin: 0.25rem 0rem;
+}
+/*# sourceMappingURL=style.css.map */

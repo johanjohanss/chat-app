@@ -1,0 +1,70 @@
+body{
+    background-color: rgb(255, 255, 255);
+}
+body {
+    margin: 0; 
+    padding-bottom: 3rem; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+}
+
+#form { 
+    background: rgba(0, 0, 0, 0.15); 
+    padding: 0.25rem; 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    display: flex; 
+    height: 3.5rem; 
+    box-sizing: border-box; 
+    backdrop-filter: blur(10px); 
+}
+
+#input { 
+    border: none; 
+    padding: 0 1rem; 
+    flex-grow: 1; 
+    border-radius: 2rem; 
+    margin: 0.25rem; 
+}
+#input:focus { 
+    outline: none; 
+}
+#form > button { 
+    background: rgb(68, 68, 68); 
+    border: none; 
+    padding: 0.25 1.25rem; 
+    margin: 0.25rem; 
+    border-radius: 0.25rem; 
+    outline: none; 
+    color: #fff; 
+}
+
+#messages { 
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.sent-message{
+    background: linear-gradient(to right, #ffc4fa, #9da6f0);
+    align-self: flex-end;
+    justify-self: flex-end;
+    //clip-path: polygon(0 0, 92% 0, 92% 80%, 100% 90%, 92% 100%, 50% 100%, 0 100%);
+}
+
+.received-message{
+    background-color: rgb(243, 243, 243);   
+    align-self: flex-start;
+    justify-self: flex-start;
+}
+.message{
+    padding: 1rem 1.5rem;
+    max-width: 60%;
+    min-width: 5rem;
+    list-style-type: none;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
+
+    margin: 0.25rem 0rem;
+}

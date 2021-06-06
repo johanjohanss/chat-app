@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chat App</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                appendMessage(input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', function(msg) {
+            var item = document.createElement('li');
+            item.textContent = msg;
+
+            //Style item
+            item.classList.add("message");
+            item.classList.add("received-message");
+
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        function appendMessage(msg){
+            var item = document.createElement('li');
+            item.textContent = msg;
+
+            //Style item
+            item.classList.add("message");
+            item.classList.add("sent-message");
+
+            messages.appendChild(item);
+        }
+
+        window.addEventListener("scroll", function(){
+            //Check if messages are scrolled up
+            //If so, show arrow to scroll back down to latest message
+        });
+    </script>
+  </body>
+</html>
