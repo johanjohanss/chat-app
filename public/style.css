@@ -47,6 +47,9 @@ body {
   border-radius: 0.25rem;
   outline: none;
   color: #fff;
+  min-width: 6rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 #messages {
@@ -58,6 +61,18 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 0.5rem;
+  margin-top: 0;
+  background: none;
+}
+
+#msg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.247);
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
 .sent-message {
@@ -81,8 +96,8 @@ body {
   min-width: 5rem;
   list-style-type: none;
   border-radius: 0.5rem;
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.116);
+  -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.137);
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.137);
   margin: 0.25rem 0rem;
 }
 /*# sourceMappingURL=style.css.map */
