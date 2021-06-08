@@ -11,27 +11,23 @@ let users = [];
 console.log("INIT USERS");
 
 app.get('/', (req, res) => {
-    //Check is socket.nickname != undefined
-    //Then show login section on index page?
   res.sendFile(__dirname + "/index.html")
 });
-/*app.get('/login', (req, res) => {
-    res.sendFile(__dirname + "/login.html")
-});*/
 
 io.on('connection', (socket) => {
 
     console.log('a user connected');
-    //io.emit('update users', users);
 
+    //Disconnect
     socket.on('disconnect', () => {
         console.log('user disconnected');
+        socket.broadcast.emit('user disconnected', socket.nickname);
         users.splice(users.indexOf(socket.nickname), 1); //Remove from users array
         io.emit('update users', users);
     });
 
+    //Sending chat message
     socket.on('chat message', (msg) => {
-        //io.emit('chat message', msg);
         let msgObject = {
             message: msg,
             user: socket.nickname
