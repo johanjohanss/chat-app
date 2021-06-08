@@ -1,19 +1,69 @@
-body {
-  background-color: white;
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding-bottom: 3rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Karla', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Karla';
+  font-weight: 700;
+}
+
+p, input {
+  font-family: 'Karla';
+  font-weight: 400;
+}
+
+/* Chat layout */
+#chat-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+/* Section showing participants in chat */
+#contact-section {
+  width: 35%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  background: white;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.158);
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.158);
+}
+
+/* Section showing main chat area */
+#chat-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  width: 65%;
+}
+
+/* Send message form */
 #form {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
   position: fixed;
   bottom: 0;
-  left: 0;
+  right: 0;
   right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -23,8 +73,12 @@ body {
           box-sizing: border-box;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  width: 65%;
+  max-width: 65%;
+  z-index: 2000;
 }
 
+/* Send message text field */
 #input {
   border: none;
   padding: 0 1rem;
@@ -39,6 +93,7 @@ body {
   outline: none;
 }
 
+/* Send message button */
 #form > button {
   background: #444444;
   border: none;
@@ -52,6 +107,7 @@ body {
   margin-right: 1rem;
 }
 
+/* Messages section */
 #messages {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,44 +116,182 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 0.5rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  justify-self: flex-end;
+  padding: 1rem;
   margin-top: 0;
+  width: 100%;
   background: none;
+  z-index: 999;
 }
 
+/* Background with image */
+#messages-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("img/p1.jpg");
+  background-size: 40%;
+  background-repeat: repeat;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+}
+
+/* Transparent overlay */
 #msg-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.247);
+  background-color: rgba(255, 255, 255, 0.623);
   height: 100%;
   width: 100%;
   pointer-events: none;
 }
 
+/* Specific message styles */
 .sent-message {
-  background: -webkit-gradient(linear, left top, right top, from(#ffc4fa), to(#9da6f0));
-  background: linear-gradient(to right, #ffc4fa, #9da6f0);
+  background: -webkit-gradient(linear, left top, right top, from(#d994fcbb), to(#ffe390bb));
+  background: linear-gradient(to right, #d994fcbb, #ffe390bb);
   -ms-flex-item-align: end;
       align-self: flex-end;
   justify-self: flex-end;
 }
 
 .received-message {
-  background-color: #f3f3f3;
+  background-color: white;
   -ms-flex-item-align: start;
       align-self: flex-start;
   justify-self: flex-start;
 }
 
+.join-message {
+  background: rgba(255, 255, 255, 0.651);
+  border: 1.5px solid #abffab;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  justify-self: flex-end;
+}
+
+.join-message-self {
+  background: rgba(255, 255, 255, 0.651);
+  border: 1.5px solid #abffab;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  justify-self: flex-end;
+}
+
+/* General message class */
 .message {
   padding: 1rem 1.5rem;
   max-width: 60%;
-  min-width: 5rem;
+  min-width: 9rem;
   list-style-type: none;
   border-radius: 0.5rem;
-  -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.137);
-          box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.137);
+  -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.151);
+          box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.151);
   margin: 0.25rem 0rem;
+}
+
+/* Sign up form */
+.choose-username {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.choose-username h2 {
+  margin: 0;
+  padding: 0.4rem;
+}
+
+#userForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#userForm * {
+  margin: 0.5rem;
+}
+
+#userInput {
+  padding: 0.25rem;
+  font-size: 1.2rem;
+  border: 2px solid rgba(0, 0, 0, 0.322);
+  border-radius: 0.2rem;
+}
+
+/* User display */
+.user-div {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: white;
+  text-align: center;
+  color: #140314;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-top: 1px dotted #ffe390;
+}
+
+.user-div:nth-child(1) {
+  border-top: none;
+}
+
+/* Re-useable components */
+.title {
+  padding: 0.2rem;
+}
+
+.title-bg {
+  margin: 0;
+  padding: 1.5rem;
+  background-color: whitesmoke;
+}
+
+.gradient-border {
+  background: -webkit-gradient(linear, left top, right top, from(#d994fc), to(#ffe390));
+  background: linear-gradient(to right, #d994fc, #ffe390);
+  height: 2px;
+  min-height: 2px;
+  width: 20%;
+  margin-bottom: 2rem;
+}
+
+/* Utility */
+.text-center {
+  text-align: center;
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

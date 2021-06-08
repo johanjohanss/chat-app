@@ -2,26 +2,69 @@
 <html lang="en">
   <head>
     <title>Chat App</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
     <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <!--<div id="messages-bg">
-        <div id="msg-overlay"></div>
-    </div>-->
-    
-    <ul id="messages">
-            
-    </ul>
 
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
+    <div class="choose-username hide">
+        <h2>Choose your username</h2>
+        <!--<div class="gradient-border"></div>-->
+        <form id="userForm">
+            <input id="userInput" type="text" name="username">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="messages-bg">
+        <div id="msg-overlay"></div>
+    </div>
+    
+
+    <div id="chat-wrapper">
+        <div id="contact-section">
+            <h2 class="text-center title title-bg">Active Users</h2>
+            <div id="userDisplay">
+
+            </div>
+        </div>
+        <div id="chat-section">
+            <ul id="messages">
+                
+            </ul>
+        
+            <form id="form" action="">
+              <input id="input" autocomplete="off" /><button>Send</button>
+            </form>
+        </div>
+    </div>
+    
+
+    
     <script src="/socket.io/socket.io.js"></script>
     <script>
+       
         var socket = io();
 
         var form = document.getElementById('form');
         var input = document.getElementById('input');
+
+        let loggedIn = false;
+        let chooseUser = document.querySelector(".choose-username");
+
+        let date = new Date();
+        console.log(date.toLocaleTimeString());
+
+        if(loggedIn == false){
+            chooseUser.classList.remove("hide");
+        }
+
+        //Display users
+        let userDisplay = document.getElementById("userDisplay");
+
+        //Array for users
+        let currentUsers = [];
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -32,27 +75,79 @@
             }
         });
 
-        socket.on('chat message', function(msg) {
+        socket.on('chat message', function(msgObject) {
             var item = document.createElement('li');
-            item.textContent = msg;
+            //let msgParagraph = document.createElement("p");
+
+            //msgParagraph.textContent = msgObject.message;
+            item.textContent = msgObject.message;
 
             //Style item
             item.classList.add("message");
             item.classList.add("received-message");
 
+            //Time
+            //console.log(currentTime)
+            //let timeP = document.createElement("p");
+            //timeP.textContent = date.toLocaleTimeString();
+
+            //item.appendChild(msgParagraph);
+            //item.appendChild(timeP);
+
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
         });
 
-        function appendMessage(msg){
+        socket.on('update users', function(users) {
+            currentUsers = users;
+            userDisplay.innerHTML = "";
+
+            currentUsers.forEach(user => {
+                let userDiv = document.createElement("div");
+                userDiv.classList.add("user-div");
+
+                let userName = document.createElement("p");
+                userName.innerText = user;
+
+                userDiv.appendChild(userName);
+                userDisplay.appendChild(userDiv);
+            });
+        });
+
+        socket.on("user joined", function(username){
+            appendMessage(username + " joined the chat!", "join-message");
+        });
+
+        function appendMessage(msg, style){
+
+            style = style || "sent-message";
+
             var item = document.createElement('li');
             item.textContent = msg;
 
             //Style item
             item.classList.add("message");
-            item.classList.add("sent-message");
+            item.classList.add(style);
 
             messages.appendChild(item);
+        }
+
+        //Choosing username
+        let userForm = document.getElementById("userForm");
+        let userInput = document.getElementById("userInput");
+
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (userInput.value) {
+                socket.emit('choose nickname', userInput.value);
+                appendMessage("You joined the chat!", "join-message-self");
+                userInput.value = '';
+                hideLogin();
+            }
+        });
+
+        function hideLogin(){
+            chooseUser.classList.add("hide");
         }
 
         window.addEventListener("scroll", function(){
