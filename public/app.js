@@ -1,0 +1,190 @@
+
+        var socket = io();
+
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+
+        let loggedIn = false;
+        let chooseUser = document.querySelector(".choose-username");
+
+        let date = new Date();
+        console.log(date.toLocaleTimeString());
+
+        if(loggedIn == false){
+            chooseUser.classList.remove("hide");
+        }
+
+        //Display users
+        let userDisplay = document.getElementById("userDisplay");
+
+        //Array for users
+        let currentUsers;
+
+        //localuser
+        let localUser;
+
+        //Messages section
+        let messagesSection = document.getElementById("messages");
+
+        //Show emoji functionality
+        let showEmoji = document.querySelector(".show-emoji-icon");
+        let showEmojiDiv = document.querySelector(".show-emoji");
+        let emojiPicker = document.getElementById("emoji-wrapper");
+
+        showEmoji.addEventListener("click", showEmojiPicker)
+
+        function showEmojiPicker(){
+            emojiPicker.classList.toggle("show-picker")
+            showEmojiDiv.classList.toggle("show-emoji-wide")
+
+            /* ADD FUNCTIONALITY */
+            //Make sure messages move so the latest message is visible
+
+            //messagesSection.style.transform = "translateY(-"+ emojiPicker.style.height +"px) !important"
+        }
+
+        //document.querySelector('emoji-picker')
+        //.addEventListener('emoji-click', event => console.log(event.detail));
+
+        document.querySelector('emoji-picker')
+        .addEventListener('emoji-click', function(e){
+            input.value = input.value + e.detail.unicode;
+        });
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                appendMessage(input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', function(msgObject) {
+            date = new Date();
+
+            let item = document.createElement('li');
+            let msgText = document.createElement("p");
+            let msgAuthor = document.createElement("p");
+            let msgTime = document.createElement("p");
+
+            msgText.classList.add("msg-text");
+            msgAuthor.classList.add("msg-author");
+            msgTime.classList.add("msg-time");
+
+            msgText.innerText = msgObject.message;
+            msgTime.innerText = date.getHours() + ":" + date.getMinutes();
+            msgAuthor.innerText = msgObject.user;
+
+            item.appendChild(msgAuthor);
+            item.appendChild(msgText);
+            item.appendChild(msgTime);
+
+            //Style item
+            item.classList.add("message");
+            item.classList.add("received-message");
+
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        //Update active users
+        socket.on('update users', function(users) {
+            currentUsers = users;
+            userDisplay.innerHTML = "";
+
+            currentUsers.forEach(user => {
+                let userDiv = document.createElement("div");
+                userDiv.classList.add("user-div");
+
+                let userName = document.createElement("p");
+                userName.innerText = user;
+
+                userDiv.appendChild(userName);
+                userDisplay.appendChild(userDiv);
+            });
+        });
+
+        //User joined chat
+        socket.on("user joined", function(username){
+            appendJoinMessage(username + " joined the chat!", "join-message");
+        });
+
+        socket.on("user disconnected", function(username){
+            appendJoinMessage(username + " left the chat!", "join-message");
+        })
+
+        function appendJoinMessage(msg, style){
+            console.log(msg);
+            let item = document.createElement('li');
+            let msgText = document.createElement("p");
+
+            msgText.classList.add("msg-text");
+
+            msgText.innerText = msg;
+
+            item.appendChild(msgText);
+
+            //Style item
+            item.classList.add("message", style);
+
+            messages.appendChild(item);
+        }
+
+        //Appends message to chat. Can also accept a style in the form of a class name 
+        function appendMessage(msg, style){
+
+            style = style || "sent-message";
+
+            date = new Date();
+
+            let item = document.createElement('li');
+            let msgText = document.createElement("p");
+            let msgAuthor = document.createElement("p");
+            let msgTime = document.createElement("p");
+
+            msgText.classList.add("msg-text");
+            msgAuthor.classList.add("msg-author");
+            msgTime.classList.add("msg-time");
+
+            msgText.innerText = msg;
+            msgTime.innerText = date.getHours() + ":" + date.getMinutes();;
+            msgAuthor.innerText = localUser;
+
+            item.appendChild(msgAuthor);
+            item.appendChild(msgText);
+            item.appendChild(msgTime);
+
+            //Style item
+            item.classList.add("message");
+            item.classList.add(style);
+
+            messages.appendChild(item);
+        }
+
+        //Choosing username
+        let userForm = document.getElementById("userForm");
+        let userInput = document.getElementById("userInput");
+
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (userInput.value) {
+                socket.emit('choose nickname', userInput.value);
+                localUser = userInput.value;
+                appendJoinMessage("You joined the chat!", "join-message-self");
+
+                userInput.value = '';
+                hideLogin();
+            }
+        });
+
+        //Hides login page
+        function hideLogin(){
+            chooseUser.classList.add("hide");
+        }
+
+        //Scroll detect and show arrow
+        window.addEventListener("scroll", function(){
+            //Check if messages are scrolled up
+            //If so, show arrow to scroll back down to latest message
+        });
