@@ -40,7 +40,10 @@
             /* ADD FUNCTIONALITY */
             //Make sure messages move so the latest message is visible
 
-            //messagesSection.style.transform = "translateY(-"+ emojiPicker.style.height +"px) !important"
+            messagesSection.style.height = window.innerHeight - emojiPicker.style.height;//"translateY(-"+ emojiPicker.style.height +"px) !important"
+            console.log(window.innerHeight)
+            console.log(emojiPicker.style.height)
+            console.log(window.innerHeight - emojiPicker.style.height)
         }
 
         //document.querySelector('emoji-picker')
@@ -73,7 +76,7 @@
             msgTime.classList.add("msg-time");
 
             msgText.innerText = msgObject.message;
-            msgTime.innerText = date.getHours() + ":" + date.getMinutes();
+            msgTime.innerText = date.getHours() + ":" + ('0'+date.getMinutes()).slice(-2);
             msgAuthor.innerText = msgObject.user;
 
             item.appendChild(msgAuthor);
@@ -148,7 +151,7 @@
             msgTime.classList.add("msg-time");
 
             msgText.innerText = msg;
-            msgTime.innerText = date.getHours() + ":" + date.getMinutes();;
+            msgTime.innerText = date.getHours() + ":" + ('0'+date.getMinutes()).slice(-2);
             msgAuthor.innerText = localUser;
 
             item.appendChild(msgAuthor);

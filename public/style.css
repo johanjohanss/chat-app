@@ -75,6 +75,7 @@ p, input {
   width: 65%;
   max-width: 65%;
   z-index: 2000;
+  height: 4rem;
 }
 
 /* Show emoji div */
@@ -157,8 +158,8 @@ emoji-picker {
 }
 
 .show-picker {
-  -webkit-transform: translateY(0%) !important;
-          transform: translateY(0%) !important;
+  -webkit-transform: translateY(-4rem) !important;
+          transform: translateY(-4rem) !important;
   -webkit-transition: all 0.75s ease;
   transition: all 0.75s ease;
 }
@@ -191,8 +192,8 @@ emoji-picker {
   position: fixed;
   top: 0;
   left: 0;
-  background-image: url("img/p1.jpg");
-  background-size: 40%;
+  background-image: url("img/Space_Patterns_2.png");
+  background-size: 50%;
   background-repeat: repeat;
   height: 100vh;
   width: 100%;
@@ -204,7 +205,7 @@ emoji-picker {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.623);
+  background-color: rgba(255, 255, 255, 0.651);
   height: 100%;
   width: 100%;
   pointer-events: none;
