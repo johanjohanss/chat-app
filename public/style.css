@@ -213,11 +213,12 @@ emoji-picker {
 
 /* Specific message styles */
 .sent-message {
-  background: -webkit-gradient(linear, left top, right top, from(#d994fce0), to(#ffe390dc));
-  background: linear-gradient(to right, #d994fce0, #ffe390dc);
+  background: -webkit-gradient(linear, left top, right top, from(#7bcfcfc0), to(#a9d8d8c0));
+  background: linear-gradient(to right, #7bcfcfc0, #a9d8d8c0);
   -ms-flex-item-align: end;
       align-self: flex-end;
   justify-self: flex-end;
+  min-width: 4rem;
 }
 
 .received-message {
@@ -225,22 +226,25 @@ emoji-picker {
   -ms-flex-item-align: start;
       align-self: flex-start;
   justify-self: flex-start;
+  min-width: 4rem;
 }
 
 .join-message {
   background: rgba(255, 255, 255, 0.849);
-  border: 1.5px solid #d994fc;
+  border: 1.5px solid #3B8282;
   -ms-flex-item-align: start;
       align-self: flex-start;
   justify-self: flex-end;
+  min-width: 4rem;
 }
 
 .join-message-self {
   background: rgba(255, 255, 255, 0.829);
-  border: 1.5px solid #d994fc;
+  border: 1.5px solid #3B8282;
   -ms-flex-item-align: end;
       align-self: flex-end;
   justify-self: flex-end;
+  min-width: 4rem;
 }
 
 /* Message parts */
@@ -318,7 +322,60 @@ emoji-picker {
   margin-bottom: 2rem;
   padding: 0.4rem;
   text-align: left;
-  border-bottom: 4px solid #d994fc;
+  border-bottom: 4px solid #3B8282;
+}
+
+#credit-text {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 0.9rem;
+}
+
+#login-top-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  font-family: 'Karla';
+}
+
+#login-top-div h3 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Login page illustrations */
+#lanterns {
+  position: absolute;
+  top: 0;
+  right: 6rem;
+  width: 16%;
+  pointer-events: none;
+}
+
+#bonsai {
+  position: absolute;
+  bottom: -1.5rem;
+  left: -2.2rem;
+  width: 35%;
+  pointer-events: none;
+}
+
+#bonsai-lines {
+  margin-right: 1rem;
 }
 
 #userForm {
@@ -374,7 +431,7 @@ emoji-picker {
   border: 2px solid rgba(0, 0, 0, 0.322);
   border-radius: 0.2rem;
   outline: none;
-  border: 2px solid #d994fc;
+  border: 2px solid #3B8282;
   background: #ffffff;
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -407,13 +464,26 @@ emoji-picker {
 
 /* Re-useable components */
 .title {
-  padding: 0.2rem;
+  padding: 0rem;
+}
+
+#logo-chat {
+  margin-right: 1rem;
 }
 
 .title-bg {
   margin: 0;
   padding: 1.5rem;
   background-color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .gradient-border {
