@@ -9,10 +9,18 @@
   <body>
 
     <div class="choose-username hide">
-        <h2>Choose your username</h2>
+        <h2>Join the chat!</h2>
         <form id="userForm">
-            <input id="userInput" type="text" name="username">
-            <input type="submit" value="Submit">
+            <div class="form-group">
+                <label>Choose a username</label>
+                <input class="form-control" id="userInput" type="text" name="username">
+            </div>
+            <div class="form-group">
+                <label>Enter room name</label>
+                <input class="form-control" id="roomInput" type="text" name="room">
+            </div>
+            
+            <input id="submit-form" type="submit" value="Join">
         </form>
     </div>
 
