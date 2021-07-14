@@ -229,7 +229,7 @@ emoji-picker {
 
 .join-message {
   background: rgba(255, 255, 255, 0.849);
-  border: 1.5px solid #abffab;
+  border: 1.5px solid #d994fc;
   -ms-flex-item-align: start;
       align-self: flex-start;
   justify-self: flex-end;
@@ -237,7 +237,7 @@ emoji-picker {
 
 .join-message-self {
   background: rgba(255, 255, 255, 0.829);
-  border: 1.5px solid #abffab;
+  border: 1.5px solid #d994fc;
   -ms-flex-item-align: end;
       align-self: flex-end;
   justify-self: flex-end;
