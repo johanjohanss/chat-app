@@ -64,7 +64,15 @@ p, input{
 
     height: 4rem;
 }
-
+#userInput{
+    padding: 0.3rem !important;
+}
+#send-msg-button{
+    background-color: $mainColor !important;
+    &:hover{
+        cursor: pointer;
+    }
+}
 /* Show emoji div */
 .show-emoji{
     width: 4rem;
@@ -323,6 +331,7 @@ emoji-picker {
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.9rem;
+    color: $mainColor;
 }
 #login-top-div{
     display: flex;
@@ -442,12 +451,22 @@ emoji-picker {
 }
 .title-bg{
     margin: 0;
-    padding: 1.5rem;
+    padding: 0.5rem;
     background-color: rgb(245, 245, 245); 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    p{
+        padding: 0; 
+        margin: 0;
+        padding-bottom: 0.75rem;
+        color: $mainColor;
+    }
+    h2{
+        margin-bottom: 0.2rem;
+    }
 }
 .gradient-border{
     background: linear-gradient(to right, #d994fc, #ffe390);

@@ -4,15 +4,10 @@
         var form = document.getElementById('form');
         var input = document.getElementById('input');
 
-        let loggedIn = false;
         let chooseUser = document.querySelector(".choose-username");
 
         let date = new Date();
         console.log(date.toLocaleTimeString());
-
-        if(loggedIn == false){
-            chooseUser.classList.remove("hide");
-        }
 
         //Display users
         let userDisplay = document.getElementById("userDisplay");
@@ -101,7 +96,7 @@
             item.classList.add("received-message");
 
             messagesSection.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
+
         });
 
         //Update active users

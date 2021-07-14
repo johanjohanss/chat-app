@@ -8,7 +8,7 @@
   </head>
   <body>
 
-    <div class="choose-username hide">
+    <div class="choose-username">
         <div id="login-top-div">
             <img id="bonsai-lines" src="img/bonsai-lines.svg" alt="bonsain tree line art">
             <h3>Bonsai Chat</h3>
@@ -28,6 +28,7 @@
             
             <input id="submit-form" type="submit" value="Join">
         </form>
+        <h4>A Simple Chat Application</h4>
         <p id="credit-text">Built by Johan Johansson</p>
     </div>
 
@@ -42,7 +43,8 @@
     <div id="chat-wrapper">
         <div id="contact-section">
             <div class="title-bg">
-                <h2 class="text-center title">Chatting with Everyone</h2>
+                <h2 class="text-center title">Active Users</h2>
+                <p>Click on a name to send a private message!</p>
             </div>
             
             <div id="userDisplay">
@@ -64,7 +66,7 @@
                     </svg>
                 </div>
                 <input id="input" autocomplete="off" />
-                <button>Send</button>
+                <button id="send-msg-button">Send</button>
             </form>
             <div id="emoji-wrapper">
                 <emoji-picker></emoji-picker>

@@ -78,6 +78,18 @@ p, input {
   height: 4rem;
 }
 
+#userInput {
+  padding: 0.3rem !important;
+}
+
+#send-msg-button {
+  background-color: #3B8282 !important;
+}
+
+#send-msg-button:hover {
+  cursor: pointer;
+}
+
 /* Show emoji div */
 .show-emoji {
   width: 4rem;
@@ -398,6 +410,7 @@ emoji-picker {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   font-size: 0.9rem;
+  color: #3B8282;
 }
 
 #login-top-div {
@@ -552,7 +565,7 @@ emoji-picker {
 
 .title-bg {
   margin: 0;
-  padding: 1.5rem;
+  padding: 0.5rem;
   background-color: whitesmoke;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -567,6 +580,17 @@ emoji-picker {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.title-bg p {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 0.75rem;
+  color: #3B8282;
+}
+
+.title-bg h2 {
+  margin-bottom: 0.2rem;
 }
 
 .gradient-border {
