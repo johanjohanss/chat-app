@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "description": "socket.io chat app",
     "scripts": {
-        "devStart": "nodemon index.js"
+        "devStart": "nodemon index.js",
+        "start": "node index.js"
     },
     "dependencies": {
         "express": "^4.17.1",
