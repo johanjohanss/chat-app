@@ -187,6 +187,28 @@ emoji-picker {
   transition: all 0.75s ease;
 }
 
+#messages-private {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  justify-self: flex-end;
+  padding: 1rem;
+  margin-top: 0;
+  width: 100%;
+  background: none;
+  z-index: 998;
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+}
+
 /* Background with image */
 #messages-bg {
   position: fixed;
@@ -197,11 +219,55 @@ emoji-picker {
   background-repeat: repeat;
   height: 100vh;
   width: 100%;
+  z-index: -2;
+}
+
+#messages-bg-2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("img/p1.jpg");
+  background-size: 50%;
+  background-repeat: repeat;
+  height: 100vh;
+  width: 100%;
   z-index: -1;
+  opacity: 0;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+#backarrow {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  width: 2.1rem;
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  z-index: 999 !important;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  padding: 0.5rem;
+}
+
+#backarrow:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.message-bg-2-active {
+  opacity: 1 !important;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 /* Transparent overlay */
-#msg-overlay {
+#msg-overlay, #msg-overlay-2 {
   position: absolute;
   top: 0;
   left: 0;
@@ -459,7 +525,20 @@ emoji-picker {
   color: #140314;
   font-weight: 700;
   font-size: 1.2rem;
-  border-bottom: 1px dotted #ffe390;
+  border-bottom: 0.75px solid #e2e2e2;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.user-div:hover {
+  cursor: pointer;
+  background-color: #edfafa;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.user-selected {
+  background-color: #e4e4e4;
 }
 
 /* Re-useable components */
@@ -484,6 +563,10 @@ emoji-picker {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .gradient-border {
@@ -501,6 +584,40 @@ emoji-picker {
 }
 
 .hide {
-  display: none;
+  display: none !important;
+}
+
+.fadeOut {
+  -webkit-animation: fadeOut 0.3s ease forwards 1;
+          animation: fadeOut 0.3s ease forwards 1;
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 0.3s ease forwards 1;
+          animation: fadeIn 0.3s ease forwards 1;
+}
+
+@-webkit-keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=style.css.map */

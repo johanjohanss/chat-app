@@ -27,19 +27,25 @@ io.on('connection', (socket) => {
     });
 
     //Sending chat message
-    socket.on('chat message', (msg) => {
+    socket.on('chat message', (msg, room) => {
         let msgObject = {
             message: msg,
-            user: socket.nickname
+            user: socket.nickname,
+            private: false,
         }
-        socket.broadcast.emit('chat message', msgObject);
+        if(room === ""){
+            socket.broadcast.emit('chat message', msgObject);
+        }else{
+            msgObject.private = true;
+            socket.to(room).emit('chat message', msgObject);
+        }
     });
 
     //User nickname sent
     socket.on('choose nickname', function(nickname) {
         socket.nickname = nickname;
 
-        users.push(socket.nickname);
+        users.push({username: socket.nickname, id: socket.id});
         console.log(users);
 
         //var destination = '/';

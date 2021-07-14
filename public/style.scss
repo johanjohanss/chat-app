@@ -1,4 +1,5 @@
 $mainColor: #3B8282; //#d994fc
+$mainColorLight: #edfafa;
 
 $secondColorTransparent: #a9d8d8c0; //$secondColorTransparent
 $mainColorTransparent: #7bcfcfc0;
@@ -148,6 +149,20 @@ emoji-picker {
     transform: translateY(0%);
     transition: all 0.75s ease;
 }
+#messages-private{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-self: flex-end;
+    padding: 1rem;
+    margin-top: 0;
+    width: 100%;
+    background: none;
+    z-index: 998;
+
+    transform: translateY(0%);
+    transition: all 0.75s ease;
+}
 /* Background with image */
 #messages-bg{
     position: fixed;
@@ -159,10 +174,50 @@ emoji-picker {
     background-repeat: repeat;
     height: 100vh;
     width: 100%;
+    z-index: -2;
+}
+#messages-bg-2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    //background-image: url("img/p1.jpg");
+    background-image: url("img/p1.jpg");
+    background-size: 50%;
+    background-repeat: repeat;
+    height: 100vh;
+    width: 100%;
     z-index: -1;
+    //transform: translateX(-200%);
+    opacity: 0;
+    transition: all 0.25s ease;
+}
+#backarrow{
+    box-sizing: content-box;
+    width: 2.1rem;
+    position: absolute;
+    top:1rem;
+    left: 1.25rem;
+    //pointer-events: all;
+
+    z-index: 999 !important;
+
+    transform: scale(1);
+    transition: all 0.5s ease;
+    padding: 0.5rem;
+
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: all 0.5s ease;
+    }
+}
+.message-bg-2-active{
+    //transform: translateX(0%) !important;
+    opacity: 1 !important;
+    transition: all 0.25s ease;
 }
 /* Transparent overlay */
-#msg-overlay{
+#msg-overlay, #msg-overlay-2{
     position: absolute;
     top: 0;
     left: 0;
@@ -365,7 +420,17 @@ emoji-picker {
     //border: 0.5px solid #ffe390;
     font-weight: 700;
     font-size: 1.2rem;
-    border-bottom: 1px dotted #ffe390;
+    border-bottom: 0.75px solid #e2e2e2;
+    transition: all 0.5s ease;
+
+    &:hover{
+        cursor: pointer;
+        background-color: $mainColorLight;
+        transition: all 0.5s ease;
+    }
+}
+.user-selected{
+    background-color:rgb(228, 228, 228);
 }
 
 /* Re-useable components */
@@ -382,6 +447,7 @@ emoji-picker {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .gradient-border{
     background: linear-gradient(to right, #d994fc, #ffe390);
@@ -397,5 +463,21 @@ emoji-picker {
     text-align: center;
 }
 .hide{
-    display: none;
+    display: none !important;
+}
+.fadeOut{
+    animation: fadeOut 0.3s ease forwards 1;
+}
+.fadeIn{
+    animation: fadeIn 0.3s ease forwards 1;
+}
+@keyframes fadeOut{
+    to{
+        opacity: 0;
+    }
+}
+@keyframes fadeIn{
+    to{
+        opacity: 1;
+    }
 }
