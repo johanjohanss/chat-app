@@ -56,6 +56,7 @@
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            showEmojiPicker();
             if (input.value) {
                 socket.emit('chat message', input.value);
                 appendMessage(input.value);
