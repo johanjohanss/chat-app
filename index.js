@@ -9,7 +9,6 @@ const port = 3000;
 app.use(express.static('public'));
 
 let users = [];
-console.log("INIT USERS");
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
@@ -17,11 +16,8 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
 
-    console.log('a user connected');
-
     //Disconnect
     socket.on('disconnect', () => {
-        console.log('user disconnected');
         socket.broadcast.emit('user disconnected', socket.nickname);
         users.splice(users.indexOf(socket.nickname), 1); //Remove from users array
         io.emit('update users', users, users.length);
@@ -48,10 +44,6 @@ io.on('connection', (socket) => {
 
         users.push({username: socket.nickname, id: socket.id});
         console.log(users);
-
-        //var destination = '/';
-        //socket.emit('redirect', destination);
-        //io.emit('update users', nickname);
 
         io.emit('update users', users, users.length);
         socket.broadcast.emit('user joined', socket.nickname);

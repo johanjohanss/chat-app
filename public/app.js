@@ -7,7 +7,6 @@
         let chooseUser = document.querySelector(".choose-username");
 
         let date = new Date();
-        console.log(date.toLocaleTimeString());
 
         //Display users
         let userDisplay = document.getElementById("userDisplay");
@@ -51,9 +50,6 @@
         function hideEmojiPicker(){
             emojiPicker.classList.remove("show-picker");
         }
-
-        //document.querySelector('emoji-picker')
-        //.addEventListener('emoji-click', event => console.log(event.detail));
 
         document.querySelector('emoji-picker')
         .addEventListener('emoji-click', function(e){
@@ -107,6 +103,7 @@
         socket.on('update users', function(users, userCount) {
             currentUsers = users;
             userDisplay.innerHTML = "";
+            userDisplaySmall.innerHTML = "";
 
             currentUsers.forEach(user => {
                 let userDiv = document.createElement("div");
@@ -144,11 +141,12 @@
         });
 
         socket.on("user disconnected", function(username){
-            appendJoinMessage(username + " left the chat!", "join-message");
+            if(username != null){
+                appendJoinMessage(username + " left the chat!", "join-message");
+            }
         })
 
         function appendJoinMessage(msg, style){
-            console.log(msg);
             let item = document.createElement('li');
             let msgText = document.createElement("p");
 
@@ -252,36 +250,3 @@
         function showSmallUserList(){
             userDisplaySmall.classList.toggle("show-small-user-list");
         }
-
-        //Elements
-        /*let privateRoomBg = document.getElementById("messages-bg-2");
-        let backarrow = document.getElementById("backarrow");
-        backarrow.addEventListener("click", backToGeneralChat);*/
-
-        //Enter room function
-        /*function enterRoom(user){
-
-            room = user.id;
-
-            //Hide all messages
-            let messages = document.getElementById("messages");
-            messages.classList.add("hide");
-
-            //Private chat - show room
-            privateRoomBg.classList.add("message-bg-2-active");
-            
-            messagesSection = document.getElementById("messages-private");
-            messagesSection.classList.remove("hide");
-
-            appendJoinMessage("You joined a private chat with " + user.username, "join-message-self");
-
-        }*/
-
-        //Exit room function
-        /*function backToGeneralChat(){
-            console.log("go back");
-            messagesSection = document.getElementById("messages");
-            privateRoomBg.classList.remove("message-bg-2-active");
-            room = "";
-            appendJoinMessage("You rejoined the general chat", "join-message-self");
-        }*/
