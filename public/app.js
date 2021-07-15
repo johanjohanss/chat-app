@@ -11,6 +11,10 @@
 
         //Display users
         let userDisplay = document.getElementById("userDisplay");
+        let userDisplaySmall = document.querySelector(".user-list-small");
+        
+        let userCounter = document.getElementById("user-counter");
+        userCounter.addEventListener("click", showSmallUserList);
 
         //Array for users
         let currentUsers;
@@ -100,7 +104,7 @@
         });
 
         //Update active users
-        socket.on('update users', function(users) {
+        socket.on('update users', function(users, userCount) {
             currentUsers = users;
             userDisplay.innerHTML = "";
 
@@ -111,6 +115,9 @@
                 let userName = document.createElement("p");
                 userName.innerText = user.username;
 
+                let userNameSmall = document.createElement("p");
+                userNameSmall.innerText = user.username;
+
                 //Enter room when clicking on name of user
                 userDiv.addEventListener("click", function(){
                     enterRoom(user, userDiv);
@@ -118,8 +125,18 @@
 
                 userDiv.appendChild(userName);
                 userDisplay.appendChild(userDiv);
+
+                //Adding user to small list
+                userDisplaySmall.appendChild(userNameSmall);
             });
+
+            updateUserCount(userCount);
         });
+
+        function updateUserCount(userCount){
+            let counterText = document.getElementById("counter-text");
+            counterText.innerText = userCount;
+        }
 
         //User joined chat
         socket.on("user joined", function(username){
@@ -230,6 +247,10 @@
                 roomUser = user.username;
                 userDiv.classList.add("user-selected");
             }   
+        }
+
+        function showSmallUserList(){
+            userDisplaySmall.classList.toggle("show-small-user-list");
         }
 
         //Elements

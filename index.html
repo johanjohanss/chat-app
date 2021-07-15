@@ -11,7 +11,7 @@
     <div class="choose-username">
         <div id="login-top-div">
             <img id="bonsai-lines" src="img/bonsai-lines.svg" alt="bonsain tree line art">
-            <h3>Bonsai Chat</h3>
+            <h3 id="login-title">Bonsai Chat</h3>
         </div>
         <img id="lanterns" src="img/lanterns.svg" alt="lanterns">
         <img id="bonsai" src="img/bonsai.svg" alt="bonsai tree illustration">
@@ -21,10 +21,6 @@
                 <label>Choose a username</label>
                 <input class="form-control" id="userInput" type="text" name="username">
             </div>
-            <!--<div class="form-group">
-                <label>Enter room name</label>
-                <input class="form-control" id="roomInput" type="text" name="room">
-            </div>-->
             
             <input id="submit-form" type="submit" value="Join">
         </form>
@@ -35,16 +31,12 @@
     <div id="messages-bg">
         <div id="msg-overlay" ></div>
     </div>
-
-    <!--<div id="messages-bg-2">
-        <div id="msg-overlay-2"></div>
-    </div>-->
     
     <div id="chat-wrapper">
         <div id="contact-section">
             <div class="title-bg">
                 <h2 class="text-center title">Active Users</h2>
-                <p>Click on a name to send a private message!</p>
+                <p class="text-center">Click on a name to send a private message!</p>
             </div>
             
             <div id="userDisplay">
@@ -55,9 +47,6 @@
             <ul id="messages">
                 
             </ul>
-            <!--<ul id="messages-private" class="hide">
-                <img id="backarrow" src="img/backarrow.svg" alt="arrow to go back">
-            </ul>-->
             <form id="form" action="">
                 <div class="show-emoji">
                     <svg class="show-emoji-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-emoji-laughing" viewBox="0 0 16 16">
@@ -72,6 +61,13 @@
                 <emoji-picker></emoji-picker>
             </div>
         </div>
+    </div>
+
+    <div id="user-counter">
+        <p id="counter-text"></p>
+    </div>
+    <div class="user-list-small">
+        <p class="user-list-small-title">Online now</p>
     </div>
     
     <script src="/socket.io/socket.io.js"></script>

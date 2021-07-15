@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
         socket.broadcast.emit('user disconnected', socket.nickname);
         users.splice(users.indexOf(socket.nickname), 1); //Remove from users array
-        io.emit('update users', users);
+        io.emit('update users', users, users.length);
     });
 
     //Sending chat message
@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
         //socket.emit('redirect', destination);
         //io.emit('update users', nickname);
 
-        io.emit('update users', users);
+        io.emit('update users', users, users.length);
         socket.broadcast.emit('user joined', socket.nickname);
         
     });

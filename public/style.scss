@@ -241,7 +241,7 @@ emoji-picker {
     background: linear-gradient(to right, $mainColorTransparent, $secondColorTransparent);
     align-self: flex-end;
     justify-self: flex-end;
-     min-width: 4rem;
+    min-width: 4rem;
 }
 .received-message{
     background-color: rgba(255, 255, 255, 0.863);   
@@ -292,7 +292,7 @@ emoji-picker {
 .message{ 
     padding: 0.5rem 1.5rem;
     max-width: 60%;
-    min-width: 9rem;
+    min-width: 9rem; // 13 to make width equal
     list-style-type: none;
     border-radius: 0.5rem;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.151);
@@ -498,5 +498,112 @@ emoji-picker {
 @keyframes fadeIn{
     to{
         opacity: 1;
+    }
+}
+
+#user-counter{
+    display: none;
+}
+#user-list-small{
+    display: none;
+}
+
+@media all and (max-width: 600px) {
+    /*#userForm{
+        width: 100%;
+    }*/
+    #bonsai{
+        display: none !important;
+    }
+    #lanterns{
+        right: 3rem;
+        width: 18%;
+    }
+    #contact-section{
+        display: none;
+    }
+    #messages{
+        width: 100%;
+    }
+    #form{
+        width: 100%;
+        max-width: 100%;
+    }
+    .message{
+        max-width: 75% !important;
+    }
+    #chat-section{
+        width: 100%;
+    }   
+    #emoji-wrapper{
+        width: 100%;
+        max-width: 100%;
+    }
+    #messages-bg{
+        background-size: 75%;
+    }
+    #user-counter{
+        z-index: 999;
+        display: block;
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+        border-radius: 0.25rem;//50%;
+        padding: 0.6rem 0.8rem;
+
+        background-color: $mainColor;
+        box-sizing: border-box;
+
+        box-shadow: 2px 2px 3px rgba(29, 29, 29, 0.137);
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    #counter-text{
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        color: white;
+    }
+    .user-list-small{
+        z-index: 999;
+        display: block;
+        position: fixed;
+        left: 1rem;
+        top: 3.5rem;
+        padding: 1rem;
+        border-radius: 0rem;
+        min-width: 3rem;
+        min-height: 5rem;
+
+        background-color: rgba(24, 24, 24, 0.842);
+        box-sizing: border-box;
+
+        box-shadow: 2px 2px 3px rgba(29, 29, 29, 0.137);
+        color: white;
+
+        //Initial state
+        opacity: 0;
+        transform: translateY(-5%);
+        transition: all 0.5s ease;
+
+        clip-path: polygon(13% 0, 20% 5%, 100% 5%, 100% 100%, 0 100%, 0 5%, 7% 5%);
+
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .user-list-small-title{
+            border-bottom: 2px solid white;
+            padding: 0.12rem;
+            margin-bottom: 0.45rem;
+        }
+    }
+    .show-small-user-list{
+        opacity: 1;
+        transform: translateY(0%);
+        transition: all 0.5s ease;
     }
 }
