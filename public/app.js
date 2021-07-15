@@ -25,10 +25,6 @@
         var room = "";
         var roomUser = "";
 
-        /*TO DO*/
-        //Storing messages in session
-        //var sessionMessages;
-
         //Messages section
         let messagesSection = document.getElementById("messages");
 
@@ -96,11 +92,11 @@
             item.classList.add("received-message");
 
             messagesSection.appendChild(item);
-
         });
 
         //Update active users
         socket.on('update users', function(users, userCount) {
+           
             currentUsers = users;
             userDisplay.innerHTML = "";
             userDisplaySmall.innerHTML = "";
@@ -228,7 +224,6 @@
         //Enter room function
         function enterRoom(user, userDiv){
             
-
             if(userDiv.classList.contains("user-selected")){
                 room = "";
                 roomUser = "";
@@ -249,4 +244,15 @@
 
         function showSmallUserList(){
             userDisplaySmall.classList.toggle("show-small-user-list");
+        }
+
+        function updateSessionStorage(){
+            sessionStorage.setItem("messages", sessionMessages)
+        }
+
+        function loadFromSessionStorage(){
+            let loadedMessages = sessionStorage.getItem("messages");
+            loadedMessages.forEach(message => {
+                messagesSection.appendChild(message);
+            })
         }
