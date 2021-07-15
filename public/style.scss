@@ -516,7 +516,7 @@ emoji-picker {
         display: none !important;
     }
     #lanterns{
-        right: 3rem;
+        right: 2rem;
         width: 18%;
     }
     #contact-section{
@@ -542,6 +542,22 @@ emoji-picker {
     #messages-bg{
         background-size: 75%;
     }
+    #form{
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        height: 3rem;
+    }
+    #input{
+        padding:  0 0.25rem !important;
+    }
+    .show-picker{
+        transform: translateY(-3rem) !important;
+    }
+    #send-msg-button{
+        padding: 0.1rem 0.25rem !important;
+        margin: 0.2rem !important;
+    }
     #user-counter{
         z-index: 999;
         display: block;
@@ -549,7 +565,7 @@ emoji-picker {
         left: 1rem;
         top: 1rem;
         border-radius: 0.25rem;//50%;
-        padding: 0.6rem 0.8rem;
+        padding: 0.9rem 1.2rem;
 
         background-color: $mainColor;
         box-sizing: border-box;
@@ -572,7 +588,7 @@ emoji-picker {
         display: block;
         position: fixed;
         left: 1rem;
-        top: 3.5rem;
+        top: 4rem;
         padding: 1rem;
         border-radius: 0rem;
         min-width: 3rem;
